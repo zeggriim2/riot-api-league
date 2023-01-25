@@ -1,0 +1,24 @@
+{
+    "name": "zeggriim/riot-api-league",
+    "description": "iot League of Legends API wrapper PHP8",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Zeggriim\\RiotApiLeague\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zeggriim2",
+            "email": "lilian.dorazio@hotmail.fr"
+        }
+    ],
+    "require": {
+        "zeggriim/riot-api-datadragon": "v0.0.4.x-dev",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2",
+        "phpunit/phpunit": "^9.5"
+    }
+}
