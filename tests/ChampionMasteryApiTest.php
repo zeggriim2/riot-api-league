@@ -7,7 +7,7 @@ use Zeggriim\RiotApiDatadragon\Enum\Platform;
 use Zeggriim\RiotApiLeague\Model\ChampionMastery\ChampionMasteryDto;
 use Zeggriim\RiotApiLeague\Riot\RiotApi;
 
-class ChampionMasteryTest extends TestCase
+class ChampionMasteryApiTest extends TestCase
 {
     private RiotApi $riotApi;
 
