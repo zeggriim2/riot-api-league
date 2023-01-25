@@ -1423,12 +1423,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zeggriim2/riot-api-datadragon.git",
-                "reference": "df1166db62cb079838ca5c9f72fe3b31fb6b5717"
+                "reference": "ad8a8acbc3ae19ed842b68bfbd00f629a000e353"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zeggriim2/riot-api-datadragon/zipball/df1166db62cb079838ca5c9f72fe3b31fb6b5717",
-                "reference": "df1166db62cb079838ca5c9f72fe3b31fb6b5717",
+                "url": "https://api.github.com/repos/zeggriim2/riot-api-datadragon/zipball/ad8a8acbc3ae19ed842b68bfbd00f629a000e353",
+                "reference": "ad8a8acbc3ae19ed842b68bfbd00f629a000e353",
                 "shasum": ""
             },
             "require": {
@@ -1476,7 +1476,7 @@
                 "issues": "https://github.com/zeggriim2/riot-api-datadragon/issues",
                 "source": "https://github.com/zeggriim2/riot-api-datadragon/tree/v0.0.4"
             },
-            "time": "2023-01-25T14:17:22+00:00"
+            "time": "2023-01-25T22:55:37+00:00"
         }
     ],
     "packages-dev": [
