@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Zeggriim\RiotApiLeague\Model;
+namespace Zeggriim\RiotApiLeague\Model\Summoner;
 
-class Summoner
+class SummonerDto
 {
     private string $id;
     private string $accountId;

@@ -8,7 +8,7 @@ use Zeggriim\RiotApiDatadragon\base\BaseApi;
 use Zeggriim\RiotApiDatadragon\BuildUrl;
 use Zeggriim\RiotApiDatadragon\Serializer\Denormalizer;
 use Zeggriim\RiotApiLeague\Enum\Summoner\UrlSummoner;
-use Zeggriim\RiotApiLeague\Model\Summoner;
+use Zeggriim\RiotApiLeague\Model\Summoner\SummonerDto;
 
 class SummonerApi extends BaseApi
 {
@@ -20,7 +20,7 @@ class SummonerApi extends BaseApi
         parent::__construct();
     }
 
-    public function getSummonerByName(string $name): Summoner
+    public function getSummonerByName(string $name): SummonerDto
     {
         $url = BuildUrl::build(UrlSummoner::URL_SUMMONER_BY_NAME,[
                 'platform' => $this->platform,
@@ -28,7 +28,7 @@ class SummonerApi extends BaseApi
             ]
         );
 
-        return $this->call($url, Summoner::class);
+        return $this->call($url, SummonerDto::class);
     }
 
     public function getSummonerByAccount(string $accountId)
@@ -39,7 +39,7 @@ class SummonerApi extends BaseApi
             ]
         );
 
-        return $this->call($url, Summoner::class);
+        return $this->call($url, SummonerDto::class);
     }
 
     public function getSummonerByPuuid(string $puuid)
@@ -50,7 +50,7 @@ class SummonerApi extends BaseApi
             ]
         );
 
-        return $this->call($url, Summoner::class);
+        return $this->call($url, SummonerDto::class);
     }
 
     public function getSummonerBySummonerId(string $summonerId)
@@ -61,7 +61,7 @@ class SummonerApi extends BaseApi
             ]
         );
 
-        return $this->call($url, Summoner::class);
+        return $this->call($url, SummonerDto::class);
     }
 
     private function call(string $url, $type)
