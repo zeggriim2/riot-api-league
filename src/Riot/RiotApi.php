@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Zeggriim\RiotApiLeague\Riot;
 
+use Zeggriim\RiotApiLeague\Riot\ChampionMastery\ChampionMastery;
 use Zeggriim\RiotApiLeague\Riot\League\LeagueApi;
+use Zeggriim\RiotApiLeague\Riot\Status\StatusApi;
 use Zeggriim\RiotApiLeague\Riot\Summoner\SummonerApi;
 
 class RiotApi
@@ -27,6 +29,23 @@ class RiotApi
     public function getLeague(): LeagueApi
     {
         return new LeagueApi(
+            $this->platform,
+            $this->apiKey
+        );
+    }
+
+    public function getStatus(): StatusApi
+    {
+        return new StatusApi(
+            $this->platform,
+            $this->apiKey
+        );
+    }
+
+
+    public function getChampionMastery(): ChampionMastery
+    {
+        return new ChampionMastery(
             $this->platform,
             $this->apiKey
         );
