@@ -6,13 +6,15 @@ namespace Zeggriim\RiotApiLeague\Riot\League;
 
 use Zeggriim\RiotApiDatadragon\base\BaseApi;
 use Zeggriim\RiotApiDatadragon\BuildUrl;
-use Zeggriim\RiotApiDatadragon\Serializer\Denormalizer;
 use Zeggriim\RiotApiLeague\Enum\League\UrlLeague;
 use Zeggriim\RiotApiLeague\Model\League\LeagueDto;
 use Zeggriim\RiotApiLeague\Model\League\LeagueListDto;
+use Zeggriim\RiotApiLeague\Riot\Traits\ApiTrait;
 
 class LeagueApi extends BaseApi
 {
+    use ApiTrait;
+
     public function __construct(
         private readonly string $platform,
         private readonly string $apiKey
@@ -94,38 +96,5 @@ class LeagueApi extends BaseApi
             ]
         );
         return $this->call($url,LeagueListDto::class);
-    }
-
-    private function call(string $url, $type,bool $isArray = false, ?string $keySearch = null)
-    {
-        $options = $this->headerToken();
-
-        $datas = $this->makeCall($url, options: $options);
-
-        if($keySearch){
-            $datas = $datas[$keySearch];
-        }
-
-
-        $denormalize = new Denormalizer();
-
-        if($isArray){
-            $objetArray = [];
-            foreach ($datas as $data){
-                $objetArray[] = $denormalize->denormalize($data, $type);
-            }
-            return $objetArray;
-        }else{
-            return $denormalize->denormalize($datas, $type);
-        }
-    }
-
-    private function headerToken()
-    {
-        return [
-            "headers" => [
-                "X-Riot-Token" => $this->apiKey
-            ]
-        ];
     }
 }

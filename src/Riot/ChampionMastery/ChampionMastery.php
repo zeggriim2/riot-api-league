@@ -6,12 +6,14 @@ namespace Zeggriim\RiotApiLeague\Riot\ChampionMastery;
 
 use Zeggriim\RiotApiDatadragon\base\BaseApi;
 use Zeggriim\RiotApiDatadragon\BuildUrl;
-use Zeggriim\RiotApiDatadragon\Serializer\Denormalizer;
 use Zeggriim\RiotApiLeague\Enum\ChampionMastery\UrlChampionMastery;
 use Zeggriim\RiotApiLeague\Model\ChampionMastery\ChampionMasteryDto;
+use Zeggriim\RiotApiLeague\Riot\Traits\ApiTrait;
 
 class ChampionMastery extends BaseApi
 {
+    use ApiTrait;
+
     public function __construct(
         private readonly string $platform,
         private readonly string $apiKey
@@ -83,39 +85,5 @@ class ChampionMastery extends BaseApi
         );
 
         return (int)$this->call($url);
-    }
-
-    private function call(string $url, $type = null,bool $isArray = false, ?string $keySearch = null)
-    {
-        $options = $this->headerToken();
-
-        $datas = $this->makeCall($url, options: $options);
-
-        if($keySearch){
-            $datas = $datas[$keySearch];
-        }
-
-        if (!is_array($datas)) return $datas;
-
-        $denormalize = new Denormalizer();
-
-        if($isArray){
-            $objetArray = [];
-            foreach ($datas as $data){
-                $objetArray[] = $denormalize->denormalize($data, $type);
-            }
-            return $objetArray;
-        }else{
-            return $denormalize->denormalize($datas, $type);
-        }
-    }
-
-    private function headerToken()
-    {
-        return [
-            "headers" => [
-                "X-Riot-Token" => $this->apiKey
-            ]
-        ];
     }
 }

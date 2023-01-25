@@ -6,12 +6,14 @@ namespace Zeggriim\RiotApiLeague\Riot\Summoner;
 
 use Zeggriim\RiotApiDatadragon\base\BaseApi;
 use Zeggriim\RiotApiDatadragon\BuildUrl;
-use Zeggriim\RiotApiDatadragon\Serializer\Denormalizer;
 use Zeggriim\RiotApiLeague\Enum\Summoner\UrlSummoner;
 use Zeggriim\RiotApiLeague\Model\Summoner\SummonerDto;
+use Zeggriim\RiotApiLeague\Riot\Traits\ApiTrait;
 
 class SummonerApi extends BaseApi
 {
+    use ApiTrait;
+
     public function __construct(
         private readonly string $platform,
         private readonly string $apiKey
@@ -64,17 +66,5 @@ class SummonerApi extends BaseApi
         return $this->call($url, SummonerDto::class);
     }
 
-    private function call(string $url, $type)
-    {
-        $options = [
-            "headers" => [
-                "X-Riot-Token" => $this->apiKey
-            ]
-        ];
-        $data = $this->makeCall($url, options: $options);
 
-        $denormalize = new Denormalizer();
-
-        return $denormalize->denormalize($data, $type);
-    }
 }
