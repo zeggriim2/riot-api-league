@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Zeggriim\RiotApiLeague\Model;
+namespace Zeggriim\RiotApiLeague\Model\League;
 
-class League
+class LeagueDto
 {
     private string $leagueId;
     private string $queueType;
