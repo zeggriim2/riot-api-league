@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zeggriim\RiotApiLeague\Enum\Status\DTO;
+namespace Zeggriim\RiotApiLeague\Model\Status;
 
 class ContentDto
 {
