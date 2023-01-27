@@ -7,15 +7,15 @@ namespace Zeggriim\RiotApiLeague\Model\Status;
 class StatusDto
 {
     private int $id;
-    private string $maintenance_status;
+    private ?string $maintenance_status;
     private string $incident_severity;
     /** @var ContentDto[]  */
     private array $titles;
     /** @var UpdateDto[] */
     private array $updates;
     private string $created_at;
-    private string $archive_at;
-    private string $updated_at;
+    private ?string $archive_at;
+    private ?string $updated_at;
     /** @var array<array-key,string>  */
     private array $platforms;
 
@@ -29,12 +29,12 @@ class StatusDto
         $this->id = $id;
     }
 
-    public function getMaintenanceStatus(): string
+    public function getMaintenanceStatus(): ?string
     {
         return $this->maintenance_status;
     }
 
-    public function setMaintenanceStatus(string $maintenance_status): void
+    public function setMaintenanceStatus(?string $maintenance_status): void
     {
         $this->maintenance_status = $maintenance_status;
     }
@@ -91,22 +91,22 @@ class StatusDto
         $this->created_at = $created_at;
     }
 
-    public function getArchiveAt(): string
+    public function getArchiveAt(): ?string
     {
         return $this->archive_at;
     }
 
-    public function setArchiveAt(string $archive_at): void
+    public function setArchiveAt(?string $archive_at): void
     {
         $this->archive_at = $archive_at;
     }
 
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): ?string
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(string $updated_at): void
+    public function setUpdatedAt(?string $updated_at): void
     {
         $this->updated_at = $updated_at;
     }

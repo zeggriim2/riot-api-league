@@ -6,14 +6,11 @@ use Zeggriim\RiotApiDatadragon\Serializer\Denormalizer;
 
 trait ApiTrait
 {
-    public function call(string $url, $type = null,bool $isArray = false, ?string $keySearch = null)
+    public function call(string $url, $type = null,bool $isArray = false)
     {
         $options = $this->headerToken();
 
         $datas = $this->makeCall($url, options: $options);
-        if($keySearch){
-            $datas = $datas[$keySearch];
-        }
 
         if (!is_array($datas) || is_null($type)) return $datas;
 
