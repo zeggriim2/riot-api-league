@@ -25,6 +25,7 @@ class ChampionMasteryApiTest extends TestCase
             "tSmVTVjydJYj5gbjMy8IhFkyMpgWhc4JNdH4ZbqHal3maT4"
         );
         $this->assertGeneral($championMasteries, ChampionMasteryDto::class);
+        $this->assertChampionMasteryDto($championMasteries[0]);
     }
 
 
@@ -70,5 +71,18 @@ class ChampionMasteryApiTest extends TestCase
         foreach ($actuals as $actual){
             $this->assertInstanceOf($type,$actual);
         }
+    }
+
+    private function assertChampionMasteryDto(ChampionMasteryDto $championMasteryDto)
+    {
+        $this->assertIsInt($championMasteryDto->getChampionId());
+        $this->assertIsInt($championMasteryDto->getChampionLevel());
+        $this->assertIsInt($championMasteryDto->getChampionPoints());
+        $this->assertIsInt($championMasteryDto->getLastPlayTime());
+        $this->assertIsInt($championMasteryDto->getChampionPointsSinceLastLevel());
+        $this->assertIsInt($championMasteryDto->getChampionPointsUntilNextLevel());
+        $this->assertIsBool($championMasteryDto->isChestGranted());
+        $this->assertIsInt($championMasteryDto->getTokensEarned());
+        $this->assertIsString($championMasteryDto->getSummonerId());
     }
 }
