@@ -23,6 +23,7 @@ class SummonerApiTest extends TestCase
     {
         $summoner = $this->leagueApi->getSummoner()->getSummonerByName("jarkalien");
         $this->assertInstanceOf(SummonerDto::class,$summoner);
+        $this->assertSummonerDto($summoner);
     }
 
     public function testGetSummonerByAccount()
@@ -45,5 +46,16 @@ class SummonerApiTest extends TestCase
             "tSmVTVjydJYj5gbjMy8IhFkyMpgWhc4JNdH4ZbqHal3maT4"
         );
         $this->assertInstanceOf(SummonerDto::class,$summoner);
+    }
+
+    private function assertSummonerDto(SummonerDto $summonerDto)
+    {
+        $this->assertIsString($summonerDto->getId());
+        $this->assertIsString($summonerDto->getAccountId());
+        $this->assertIsString($summonerDto->getPuuid());
+        $this->assertIsString($summonerDto->getName());
+        $this->assertIsInt($summonerDto->getProfileIconId());
+        $this->assertIsInt($summonerDto->getRevisionDate());
+        $this->assertIsInt($summonerDto->getSummonerLevel());
     }
 }
