@@ -8,6 +8,7 @@ use Zeggriim\RiotApiLeague\Enum\League\Division;
 use Zeggriim\RiotApiLeague\Enum\League\Queue;
 use Zeggriim\RiotApiLeague\Enum\League\Tier;
 use Zeggriim\RiotApiLeague\Model\League\LeagueDto;
+use Zeggriim\RiotApiLeague\Model\League\LeagueItemDto;
 use Zeggriim\RiotApiLeague\Model\League\LeagueListDto;
 use Zeggriim\RiotApiLeague\Riot\RiotApi;
 
@@ -25,9 +26,12 @@ class LeagueApiTest extends TestCase
 
     /**
      * @dataProvider providerLeagueData
+     * @param $queue
+     * @param $tier
+     * @param $division
      * @return void
      */
-    public function testGetLeagueGeneral($queue, $tier, $division)
+    public function testGetLeagueGeneral($queue, $tier, $division): void
     {
         $leagues = $this->riotApi->getLeague()->getLeague(
             $queue,
@@ -37,7 +41,7 @@ class LeagueApiTest extends TestCase
         $this->assertGeneral($leagues, LeagueDto::class);
     }
 
-    public function providerLeagueData()
+    public function providerLeagueData(): array
     {
         return [
             [Queue::RANKED_SOLO, Tier::DIAMOND, Division::I],
@@ -73,6 +77,7 @@ class LeagueApiTest extends TestCase
             "tSmVTVjydJYj5gbjMy8IhFkyMpgWhc4JNdH4ZbqHal3maT4"
         );
         $this->assertGeneral($leagues, LeagueDto::class);
+        $this->assertLeagueDto($leagues[0]);
     }
 
     public function testGetLeagueLeagueId()
@@ -99,6 +104,9 @@ class LeagueApiTest extends TestCase
     {
         $league = $this->riotApi->getLeague()->getMaster(Queue::RANKED_SOLO);
         $this->assertInstanceOf(LeagueListDto::class, $league);
+        $this->assertLeagueListDto($league);
+        $this->assertContainsOnlyInstancesOf(LeagueItemDto::class, $league->getEntries());
+        $this->assertLeagueItemDto($league->getEntries()[0]);
     }
 
     private function assertGeneral($actuals, $type)
@@ -107,5 +115,44 @@ class LeagueApiTest extends TestCase
         foreach ($actuals as $actual){
             $this->assertInstanceOf($type,$actual);
         }
+    }
+
+    private function assertLeagueDto(LeagueDto$league)
+    {
+        $this->assertIsString($league->getLeagueId());
+        $this->assertIsString($league->getQueueType());
+        $this->assertIsString($league->getTier());
+        $this->assertIsString($league->getRank());
+        $this->assertIsString($league->getSummonerId());
+        $this->assertIsString($league->getSummonerName());
+        $this->assertIsInt($league->getLeaguePoints());
+        $this->assertIsInt($league->getWins());
+        $this->assertIsInt($league->getLosses());
+        $this->assertIsBool($league->isVeteran());
+        $this->assertIsBool($league->isInactive());
+        $this->assertIsBool($league->isFreshBlood());
+        $this->assertIsBool($league->isHotStreak());
+    }
+
+    private function assertLeagueItemDto(LeagueItemDto $leagueItemDto)
+    {
+        $this->assertIsString($leagueItemDto->getSummonerId());
+        $this->assertIsString($leagueItemDto->getSummonerName());
+        $this->assertIsString($leagueItemDto->getRank());
+        $this->assertIsInt($leagueItemDto->getLeaguePoints());
+        $this->assertIsInt($leagueItemDto->getWins());
+        $this->assertIsInt($leagueItemDto->getLosses());
+        $this->assertIsBool($leagueItemDto->isVeteran());
+        $this->assertIsBool($leagueItemDto->isInactive());
+        $this->assertIsBool($leagueItemDto->isFreshBlood());
+        $this->assertIsBool($leagueItemDto->isHotStreak());
+    }
+
+    private function assertLeagueListDto(LeagueListDto $leagueListDto)
+    {
+        $this->assertIsString($leagueListDto->getTier());
+        $this->assertIsString($leagueListDto->getLeagueId());
+        $this->assertIsString($leagueListDto->getQueue());
+        $this->assertIsString($leagueListDto->getName());
     }
 }

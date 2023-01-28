@@ -10,7 +10,7 @@ class LeagueListDto
     private string $leagueId;
     private string $queue;
     private string $name;
-    /** @var array<LeagueDto[]>  */
+    /** @var LeagueItemDto[]  */
     private array $entries;
 
     public function getTier(): string
@@ -54,7 +54,7 @@ class LeagueListDto
     }
 
     /**
-     * @return array<LeagueDto[]>
+     * @return LeagueItemDto[]
      */
     public function getEntries(): array
     {
@@ -62,7 +62,7 @@ class LeagueListDto
     }
 
     /**
-     * @param array<LeagueDto[]> $entries
+     * @param LeagueItemDto[] $entries
      */
     public function setEntries(array $entries): void
     {
