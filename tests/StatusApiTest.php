@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 use Zeggriim\RiotApiDatadragon\Enum\Platform;
+use Zeggriim\RiotApiLeague\Model\Status\ContentDto;
 use Zeggriim\RiotApiLeague\Model\Status\PlatformDataDto;
+use Zeggriim\RiotApiLeague\Model\Status\StatusDto;
+use Zeggriim\RiotApiLeague\Model\Status\UpdateDto;
 use Zeggriim\RiotApiLeague\Riot\RiotApi;
 
 class StatusApiTest extends TestCase
@@ -24,5 +27,47 @@ class StatusApiTest extends TestCase
         $status = $this->riotApi->getStatus()->getStatus();
 
         $this->assertInstanceOf(PlatformDataDto::class, $status);
+        $this->assertPlatformDataDto($status);
+        if (count($status->getMaintenances()) > 0) $this->assertStatusDto($status->getMaintenances()[0]);
+        if (count($status->getIncidents()) > 0) $this->assertStatusDto($status->getIncidents()[0]);
+    }
+
+    private function assertPlatformDataDto(PlatformDataDto $platformDataDto)
+    {
+        $this->assertIsString($platformDataDto->getId());
+        $this->assertIsString($platformDataDto->getName());
+        $this->assertIsArray($platformDataDto->getLocales());
+        $this->assertIsArray($platformDataDto->getMaintenances());
+        $this->assertContainsOnlyInstancesOf(StatusDto::class, $platformDataDto->getMaintenances());
+        $this->assertIsArray($platformDataDto->getIncidents());
+        $this->assertContainsOnlyInstancesOf(StatusDto::class, $platformDataDto->getIncidents());
+    }
+
+    private function assertStatusDto(StatusDto $statusDto)
+    {
+        $this->assertIsInt($statusDto->getId());
+// TODO       $this->assertIsString($statusDto->getMaintenanceStatus());
+        $this->assertIsString($statusDto->getIncidentSeverity());
+        if (count($statusDto->getTitles()) > 0) $this->assertContentDto($statusDto->getTitles()[0]);
+        if (count($statusDto->getUpdates()) > 0) $this->assertUpdateDto($statusDto->getUpdates()[0]);
+        $this->assertIsString($statusDto->getCreatedAt());
+        $this->assertIsArray($statusDto->getPlatforms());
+    }
+
+    private function assertContentDto(ContentDto $contentDto)
+    {
+        $this->assertIsString($contentDto->getLocale());
+        $this->assertIsString($contentDto->getContent());
+    }
+
+    private function assertUpdateDto(UpdateDto $updateDto)
+    {
+        $this->assertIsInt($updateDto->getId());
+        $this->assertIsString($updateDto->getAuthor());
+        $this->assertIsBool($updateDto->isPublish());
+        $this->assertIsArray($updateDto->getPublishLocations());
+        $this->assertIsArray($updateDto->getTranslations());
+        $this->assertIsString($updateDto->getCreatedAt());
+        $this->assertIsString($updateDto->getUpdatedAt());
     }
 }
