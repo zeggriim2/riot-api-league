@@ -8,7 +8,7 @@ class StatusDto
 {
     private int $id;
     private ?string $maintenance_status;
-    private string $incident_severity;
+    private ?string $incident_severity;
     /** @var ContentDto[]  */
     private array $titles;
     /** @var UpdateDto[] */
@@ -39,12 +39,12 @@ class StatusDto
         $this->maintenance_status = $maintenance_status;
     }
 
-    public function getIncidentSeverity(): string
+    public function getIncidentSeverity(): ?string
     {
         return $this->incident_severity;
     }
 
-    public function setIncidentSeverity(string $incident_severity): void
+    public function setIncidentSeverity(?string $incident_severity): void
     {
         $this->incident_severity = $incident_severity;
     }

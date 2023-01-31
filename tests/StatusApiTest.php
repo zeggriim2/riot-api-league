@@ -46,12 +46,23 @@ class StatusApiTest extends TestCase
     private function assertStatusDto(StatusDto $statusDto)
     {
         $this->assertIsInt($statusDto->getId());
-// TODO       $this->assertIsString($statusDto->getMaintenanceStatus());
-        $this->assertIsString($statusDto->getIncidentSeverity());
+        $this->assertNullOrString($statusDto->getMaintenanceStatus());
+        $this->assertNullOrString($statusDto->getIncidentSeverity());
         if (count($statusDto->getTitles()) > 0) $this->assertContentDto($statusDto->getTitles()[0]);
         if (count($statusDto->getUpdates()) > 0) $this->assertUpdateDto($statusDto->getUpdates()[0]);
         $this->assertIsString($statusDto->getCreatedAt());
         $this->assertIsArray($statusDto->getPlatforms());
+        $this->assertNullOrString($statusDto->getArchiveAt());
+        $this->assertNullOrString($statusDto->getUpdatedAt());
+    }
+
+    private function assertNullOrString(?string $actual)
+    {
+        if($actual === null){
+            $this->assertNull($actual);
+        }else{
+            $this->assertIsString($actual);
+        }
     }
 
     private function assertContentDto(ContentDto $contentDto)
