@@ -6,9 +6,17 @@ use Zeggriim\RiotApiDatadragon\Serializer\Denormalizer;
 
 trait ApiTrait
 {
-    public function call(string $url, $type = null,bool $isArray = false)
+    public function call(
+        string $url,
+        array $headers = [],
+        array $query = [],
+        $type = null,
+        bool $isArray = false
+    )
     {
         $options = $this->headerToken();
+        if(count($headers) > 0) $options['headers'] = $headers;
+        if(count($headers) > 0) $options['query'] = $query;
 
         $datas = $this->makeCall($url, options: $options);
 
@@ -16,9 +24,10 @@ trait ApiTrait
 
         $denormalize = new Denormalizer();
 
-        if($isArray){
+        if($isArray) {
             $objetArray = [];
             foreach ($datas as $data){
+
                 $objetArray[] = $denormalize->denormalize($data, $type);
             }
             return $objetArray;
