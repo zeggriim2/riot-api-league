@@ -15,5 +15,4 @@ class UrlChampionMastery
     public const URL_CHAMPION_MASTERY_TOP_SUMMONER_ID = self::URL_CHAMPION_MASTERY_SUMMONER_ID . "/top";
     public const URL_CHAMPION_MASTERY_ALL_SCORE_SUMMONER_ID
         = self::URL_CHAMPION_MASTERY . "/scores/by-summoner/{summonerId}";
-
 }

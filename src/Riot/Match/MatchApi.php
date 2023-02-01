@@ -21,8 +21,7 @@ class MatchApi extends BaseApi
     public function __construct(
         private readonly string $platform,
         private readonly string $apiKey
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -30,11 +29,13 @@ class MatchApi extends BaseApi
      * @param string $puuid
      * @return array<array-key,string>
      */
-    public function getMatchBySummonerPuuid(string $puuid,int $start = 0,int $count = 20): array
+    public function getMatchBySummonerPuuid(string $puuid, int $start = 0, int $count = 20): array
     {
-        $url = BuildUrl::build(UrlMatch::URL_MATCH_SUMMONER_PUUID,[
+        $url = BuildUrl::build(
+            UrlMatch::URL_MATCH_SUMMONER_PUUID,
+            [
                 "region"        => Region::PLATFORM_TO_REGION[$this->platform],
-                "puuid"         => $puuid
+                "puuid"         => $puuid,
             ]
         );
         return $this->call($url, query: ["start" => $start, "count" => $count]);
@@ -42,9 +43,11 @@ class MatchApi extends BaseApi
 
     public function getMatchById(string $id): MatchDto
     {
-        $url = BuildUrl::build(UrlMatch::URL_MATCH_ID,[
+        $url = BuildUrl::build(
+            UrlMatch::URL_MATCH_ID,
+            [
                 "region"        => Region::PLATFORM_TO_REGION[$this->platform],
-                "id"         => $id
+                "id"         => $id,
             ]
         );
 
@@ -53,9 +56,11 @@ class MatchApi extends BaseApi
 
     public function getMatchTimeLineById(string $id): MatchTimeLineDto
     {
-        $url = BuildUrl::build(UrlMatch::URL_MATCH_ID_TIMELINE,[
+        $url = BuildUrl::build(
+            UrlMatch::URL_MATCH_ID_TIMELINE,
+            [
                 "region"        => Region::PLATFORM_TO_REGION[$this->platform],
-                "id"         => $id
+                "id"         => $id,
             ]
         );
 

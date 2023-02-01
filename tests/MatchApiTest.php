@@ -46,16 +46,15 @@ class MatchApiTest extends TestCase
     public function testGetMatchById()
     {
         $match = $this->riotApi->getMatch()->getMatchById("EUW1_6151603461");
-        $this->assertInstanceOf(MatchDto::class,$match);
+        $this->assertInstanceOf(MatchDto::class, $match);
         $this->assertMatchDto($match);
     }
 
     public function testGetMatchTimeLineId()
     {
         $matchTimeLine = $this->riotApi->getMatch()->getMatchTimeLineById("EUW1_6151603461");
-        $this->assertInstanceOf(MatchTimeLineDto::class,$matchTimeLine);
+        $this->assertInstanceOf(MatchTimeLineDto::class, $matchTimeLine);
         $this->assertMatchTimeLineDto($matchTimeLine);
-
     }
 
     private function assertMatchTimeLineDto(MatchTimeLineDto $matchTimeLineDto)
@@ -67,13 +66,11 @@ class MatchApiTest extends TestCase
     private function assertInfoTimeLineDto(InfoTimeLineDto $infoTimeLineDto)
     {
         $this->assertIsInt($infoTimeLineDto->getFrameInterval());
-        foreach ($infoTimeLineDto->getFrames() as $frameTimeLineDto)
-        {
+        foreach ($infoTimeLineDto->getFrames() as $frameTimeLineDto) {
             $this->assertFrameTimeLineDto($frameTimeLineDto);
         }
         $this->assertIsInt($infoTimeLineDto->getGameId());
-        foreach ($infoTimeLineDto->getParticipants() as $participant)
-        {
+        foreach ($infoTimeLineDto->getParticipants() as $participant) {
             $this->assertParticipantTimeLineDto($participant);
         }
     }
@@ -242,7 +239,6 @@ class MatchApiTest extends TestCase
         foreach ($perksDto->getStyles() as $style) {
             $this->assertPerkStyleDto($style);
         }
-
     }
 
     private function assertPerkStatsDto(PerkStatsDto $perkStatsDto)
@@ -255,8 +251,7 @@ class MatchApiTest extends TestCase
     private function assertPerkStyleDto(PerkStyleDto $perkStyleDto)
     {
         $this->assertIsString($perkStyleDto->getDescription());
-        foreach ($perkStyleDto->getSelections() as $selection)
-        {
+        foreach ($perkStyleDto->getSelections() as $selection) {
             $this->assertPerkStyleSelectionDto($selection);
         }
         $this->assertIsInt($perkStyleDto->getStyle());
@@ -272,7 +267,7 @@ class MatchApiTest extends TestCase
 
     private function assertTeamDto(TeamDto $teamDto)
     {
-        foreach($teamDto->getBans() as $ban){
+        foreach ($teamDto->getBans() as $ban) {
             $this->assertBanDto($ban);
         }
         $this->assertObjectivesDto($teamDto->getObjectives());

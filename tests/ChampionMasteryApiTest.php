@@ -38,7 +38,7 @@ class ChampionMasteryApiTest extends TestCase
             $summonerId,
             $championId
         );
-        $this->assertInstanceOf(ChampionMasteryDto::class,$championMastery);
+        $this->assertInstanceOf(ChampionMasteryDto::class, $championMastery);
     }
 
     public function providerChampionMasteryBySummonerAndChampionId()
@@ -68,8 +68,8 @@ class ChampionMasteryApiTest extends TestCase
     private function assertGeneral($actuals, $type)
     {
         $this->assertIsArray($actuals);
-        foreach ($actuals as $actual){
-            $this->assertInstanceOf($type,$actual);
+        foreach ($actuals as $actual) {
+            $this->assertInstanceOf($type, $actual);
         }
     }
 

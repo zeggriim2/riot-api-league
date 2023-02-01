@@ -28,8 +28,12 @@ class StatusApiTest extends TestCase
 
         $this->assertInstanceOf(PlatformDataDto::class, $status);
         $this->assertPlatformDataDto($status);
-        if (count($status->getMaintenances()) > 0) $this->assertStatusDto($status->getMaintenances()[0]);
-        if (count($status->getIncidents()) > 0) $this->assertStatusDto($status->getIncidents()[0]);
+        if (count($status->getMaintenances()) > 0) {
+            $this->assertStatusDto($status->getMaintenances()[0]);
+        }
+        if (count($status->getIncidents()) > 0) {
+            $this->assertStatusDto($status->getIncidents()[0]);
+        }
     }
 
     private function assertPlatformDataDto(PlatformDataDto $platformDataDto)
@@ -48,8 +52,12 @@ class StatusApiTest extends TestCase
         $this->assertIsInt($statusDto->getId());
         $this->assertNullOrString($statusDto->getMaintenanceStatus());
         $this->assertNullOrString($statusDto->getIncidentSeverity());
-        if (count($statusDto->getTitles()) > 0) $this->assertContentDto($statusDto->getTitles()[0]);
-        if (count($statusDto->getUpdates()) > 0) $this->assertUpdateDto($statusDto->getUpdates()[0]);
+        if (count($statusDto->getTitles()) > 0) {
+            $this->assertContentDto($statusDto->getTitles()[0]);
+        }
+        if (count($statusDto->getUpdates()) > 0) {
+            $this->assertUpdateDto($statusDto->getUpdates()[0]);
+        }
         $this->assertIsString($statusDto->getCreatedAt());
         $this->assertIsArray($statusDto->getPlatforms());
         $this->assertNullOrString($statusDto->getArchiveAt());
@@ -58,9 +66,9 @@ class StatusApiTest extends TestCase
 
     private function assertNullOrString(?string $actual)
     {
-        if($actual === null){
+        if ($actual === null) {
             $this->assertNull($actual);
-        }else{
+        } else {
             $this->assertIsString($actual);
         }
     }

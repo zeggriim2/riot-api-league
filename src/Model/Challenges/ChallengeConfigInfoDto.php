@@ -9,7 +9,7 @@ class ChallengeConfigInfoDto
     private int $id;
     private array $localizedNames;
     private string $state;
-// TODO    private int $tracking;
+    // TODO    private int $tracking;
     private ?int $startTimestamp = null;
     private ?int $endTimestamp = null;
     private bool $leaderboard;

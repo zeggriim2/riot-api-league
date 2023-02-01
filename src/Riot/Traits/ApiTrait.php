@@ -12,36 +12,39 @@ trait ApiTrait
         array $query = [],
         $type = null,
         bool $isArray = false
-    )
-    {
+    ) {
         $options = $this->headerToken();
-        if(count($headers) > 0) $options['headers'] = $headers;
-        if(count($headers) > 0) $options['query'] = $query;
+        if (count($headers) > 0) {
+            $options['headers'] = $headers;
+        }
+        if (count($headers) > 0) {
+            $options['query'] = $query;
+        }
 
         $datas = $this->makeCall($url, options: $options);
 
-        if (!is_array($datas) || is_null($type)) return $datas;
+        if (!is_array($datas) || is_null($type)) {
+            return $datas;
+        }
 
         $denormalize = new Denormalizer();
 
-        if($isArray) {
+        if ($isArray) {
             $objetArray = [];
-            foreach ($datas as $data){
-
+            foreach ($datas as $data) {
                 $objetArray[] = $denormalize->denormalize($data, $type);
             }
             return $objetArray;
-        }else{
-            return $denormalize->denormalize($datas, $type);
         }
+        return $denormalize->denormalize($datas, $type);
     }
 
     private function headerToken(): array
     {
         return [
             "headers" => [
-                "X-Riot-Token" => $this->apiKey
-            ]
+                "X-Riot-Token" => $this->apiKey,
+            ],
         ];
     }
 }

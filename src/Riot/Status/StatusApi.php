@@ -17,18 +17,19 @@ class StatusApi extends BaseApi
     public function __construct(
         private readonly string $platform,
         private readonly string $apiKey
-    )
-    {
+    ) {
         parent::__construct();
     }
 
     public function getStatus(): PlatformDataDto
     {
-        $url = BuildUrl::build(UrlStatus::URL_STATUS,[
+        $url = BuildUrl::build(
+            UrlStatus::URL_STATUS,
+            [
                 'platform'      => $this->platform,
             ]
         );
 
-        return $this->call($url,type: PlatformDataDto::class);
+        return $this->call($url, type: PlatformDataDto::class);
     }
 }

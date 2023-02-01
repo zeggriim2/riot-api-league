@@ -17,17 +17,19 @@ class ChampionApi extends BaseApi
     public function __construct(
         private readonly string $platform,
         private readonly string $apiKey
-    )
-    {
+    ) {
         parent::__construct();
     }
 
     public function getChampionRotations(): ChampionInfo
     {
-        $url = BuildUrl::build(UrlChampion::URL_CHAMPION_ROTATIONS,[
-                'platform'  => $this->platform
+        $url = BuildUrl::build(
+            UrlChampion::URL_CHAMPION_ROTATIONS,
+            [
+                'platform'  => $this->platform,
             ]
         );
 
-        return $this->call($url, type: ChampionInfo::class);    }
+        return $this->call($url, type: ChampionInfo::class);
+    }
 }

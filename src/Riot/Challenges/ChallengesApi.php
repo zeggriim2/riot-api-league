@@ -18,8 +18,7 @@ class ChallengesApi extends BaseApi
     public function __construct(
         private readonly string $platform,
         private readonly string $apiKey
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -28,7 +27,9 @@ class ChallengesApi extends BaseApi
      */
     public function getChallengesConfig(): array
     {
-        $url = BuildUrl::build(UrlChallenges::URL_CHALLENGES_CONFIG,[
+        $url = BuildUrl::build(
+            UrlChallenges::URL_CHALLENGES_CONFIG,
+            [
                 'platform'      => $this->platform,
             ]
         );
@@ -38,7 +39,9 @@ class ChallengesApi extends BaseApi
 
     public function getChallengesPercentiles()
     {
-        $url = BuildUrl::build(UrlChallenges::URL_CHALLENGES_PERCENTILES,[
+        $url = BuildUrl::build(
+            UrlChallenges::URL_CHALLENGES_PERCENTILES,
+            [
                 'platform'      => $this->platform,
             ]
         );
@@ -48,9 +51,11 @@ class ChallengesApi extends BaseApi
 
     public function getChallengesByChallengeId(int|string $challengeId): ChallengeConfigInfoDto
     {
-        $url = BuildUrl::build(UrlChallenges::URL_CHALLENGES_CHALLENGE_ID,[
+        $url = BuildUrl::build(
+            UrlChallenges::URL_CHALLENGES_CHALLENGE_ID,
+            [
                 "platform"      => $this->platform,
-                "challengeId"   => (string)$challengeId
+                "challengeId"   => (string)$challengeId,
             ]
         );
 
@@ -59,9 +64,11 @@ class ChallengesApi extends BaseApi
 
     public function getChallengesPercentileByChallengeId(int|string $challengeId)
     {
-        $url = BuildUrl::build(UrlChallenges::URL_CHALLENGES_PERCENTILES_SUMMONER_ID,[
+        $url = BuildUrl::build(
+            UrlChallenges::URL_CHALLENGES_PERCENTILES_SUMMONER_ID,
+            [
                 "platform"      => $this->platform,
-                "challengeId"   => (string)$challengeId
+                "challengeId"   => (string)$challengeId,
             ]
         );
 
@@ -70,9 +77,11 @@ class ChallengesApi extends BaseApi
 
     public function getChallengesPlayerData(string $puuid): PlayerInfoDto
     {
-        $url = BuildUrl::build(UrlChallenges::URL_CHALLENGES_PLAYER_DATA,[
+        $url = BuildUrl::build(
+            UrlChallenges::URL_CHALLENGES_PLAYER_DATA,
+            [
                 "platform"      => $this->platform,
-                "puuid"   => $puuid
+                "puuid"   => $puuid,
             ]
         );
 

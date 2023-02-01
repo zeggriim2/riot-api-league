@@ -75,7 +75,7 @@ class ChallengesApiTest extends TestCase
         $challengerPlayerData = $this->riotApi->getChallenges()->getChallengesPlayerData(
             "NFLqmQ-TfqzILQI1aYhPTIBn6FG1Ox3QYT2sCGDRQNlEQC8MVIzkOjw2VAncGE70VF-L4ptfaUxEUw"
         );
-        $this->assertInstanceOf(PlayerInfoDto::class,$challengerPlayerData);
+        $this->assertInstanceOf(PlayerInfoDto::class, $challengerPlayerData);
         $this->assertPlayerInfoDto($challengerPlayerData);
     }
 
@@ -103,18 +103,18 @@ class ChallengesApiTest extends TestCase
         $this->assertIsString($challengePointsDto->getLevel());
         $this->assertIsInt($challengePointsDto->getCurrent());
         $this->assertIsInt($challengePointsDto->getMax());
-        if(is_int($challengePointsDto->getPercentile())){
+        if (is_int($challengePointsDto->getPercentile())) {
             $this->assertIsInt($challengePointsDto->getPercentile());
-        }else{
+        } else {
             $this->assertIsFloat($challengePointsDto->getPercentile());
         }
     }
 
     private function assertNullOrIsInt(?int $actual)
     {
-        if(is_int($actual)){
+        if (is_int($actual)) {
             $this->assertIsInt($actual);
-        }else{
+        } else {
             $this->assertNull($actual);
         }
     }

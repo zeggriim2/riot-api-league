@@ -18,7 +18,6 @@ class RiotApi
         private readonly string $platform,
         private readonly string $apiKey
     ) {
-
     }
 
     public function getSummoner(): SummonerApi

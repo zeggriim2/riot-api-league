@@ -18,8 +18,7 @@ class LeagueApi extends BaseApi
     public function __construct(
         private readonly string $platform,
         private readonly string $apiKey
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -30,9 +29,11 @@ class LeagueApi extends BaseApi
      * @param int $page
      * @return array<array-key,LeagueDto>
      */
-    public function getLeague(string $queue, string $tier, string $division,int $page = 1): array
+    public function getLeague(string $queue, string $tier, string $division, int $page = 1): array
     {
-        $url = BuildUrl::build(UrlLeague::URL_LEAGUE_GENERAL,[
+        $url = BuildUrl::build(
+            UrlLeague::URL_LEAGUE_GENERAL,
+            [
                 'platform'  => $this->platform,
                 'queue'     => $queue,
                 'tier'      => $tier,
@@ -49,9 +50,11 @@ class LeagueApi extends BaseApi
      */
     public function getLeagueBySummonerId(string $summonerId): array
     {
-        $url = BuildUrl::build(UrlLeague::URL_LEAGUE_SUMMONER_ID,[
+        $url = BuildUrl::build(
+            UrlLeague::URL_LEAGUE_SUMMONER_ID,
+            [
                 'platform'      => $this->platform,
-                'summonerId'    => $summonerId
+                'summonerId'    => $summonerId,
             ]
         );
 
@@ -60,42 +63,50 @@ class LeagueApi extends BaseApi
 
     public function getLeagueByLeagueId(string $leagueId): LeagueListDto
     {
-        $url = BuildUrl::build(UrlLeague::URL_LEAGUE_LEAGUE_ID,[
+        $url = BuildUrl::build(
+            UrlLeague::URL_LEAGUE_LEAGUE_ID,
+            [
                 'platform'      => $this->platform,
-                'leagueId'    => $leagueId
+                'leagueId'    => $leagueId,
             ]
         );
 
-        return $this->call($url,type: LeagueListDto::class);
+        return $this->call($url, type: LeagueListDto::class);
     }
 
     public function getLeagueChallenger(string $queue): LeagueListDto
     {
-        $url = BuildUrl::build(UrlLeague::URL_LEAGUE_CHALLENGER,[
+        $url = BuildUrl::build(
+            UrlLeague::URL_LEAGUE_CHALLENGER,
+            [
                 'platform'      => $this->platform,
-                'queue'    => $queue
+                'queue'    => $queue,
             ]
         );
-        return $this->call($url,type: LeagueListDto::class);
+        return $this->call($url, type: LeagueListDto::class);
     }
 
     public function getGrandMaster(string $queue): LeagueListDto
     {
-        $url = BuildUrl::build(UrlLeague::URL_LEAGUE_GRANDMASTER,[
+        $url = BuildUrl::build(
+            UrlLeague::URL_LEAGUE_GRANDMASTER,
+            [
                 'platform'      => $this->platform,
-                'queue'    => $queue
+                'queue'    => $queue,
             ]
         );
-        return $this->call($url,type: LeagueListDto::class);
+        return $this->call($url, type: LeagueListDto::class);
     }
 
     public function getMaster(string $queue): LeagueListDto
     {
-        $url = BuildUrl::build(UrlLeague::URL_LEAGUE_MASTER,[
+        $url = BuildUrl::build(
+            UrlLeague::URL_LEAGUE_MASTER,
+            [
                 'platform'      => $this->platform,
-                'queue'    => $queue
+                'queue'    => $queue,
             ]
         );
-        return $this->call($url,type: LeagueListDto::class);
+        return $this->call($url, type: LeagueListDto::class);
     }
 }

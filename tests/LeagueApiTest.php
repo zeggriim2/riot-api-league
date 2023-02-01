@@ -85,7 +85,7 @@ class LeagueApiTest extends TestCase
         $league = $this->riotApi->getLeague()->getLeagueByLeagueId(
             "8063dc45-b6fa-4510-b0cb-fe241e949676"
         );
-        $this->assertInstanceOf(LeagueListDto::class,$league);
+        $this->assertInstanceOf(LeagueListDto::class, $league);
     }
 
     public function testGetLeagueChallenger()
@@ -112,8 +112,8 @@ class LeagueApiTest extends TestCase
     private function assertGeneral($actuals, $type)
     {
         $this->assertIsArray($actuals);
-        foreach ($actuals as $actual){
-            $this->assertInstanceOf($type,$actual);
+        foreach ($actuals as $actual) {
+            $this->assertInstanceOf($type, $actual);
         }
     }
 

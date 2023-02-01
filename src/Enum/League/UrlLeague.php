@@ -14,5 +14,4 @@ class UrlLeague
     public const URL_LEAGUE_GRANDMASTER  = self::URL_LEAGUE . "grandmasterleagues/by-queue/{queue}";
     public const URL_LEAGUE_MASTER  = self::URL_LEAGUE . "masterleagues/by-queue/{queue}";
     public const URL_LEAGUE_LEAGUE_ID  = self::URL_LEAGUE . "leagues/{leagueId}";
-
 }
