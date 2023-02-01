@@ -27,6 +27,7 @@ class LeagueApi extends BaseApi
      * @param string $queue
      * @param string $tier
      * @param string $division
+     * @param int $page
      * @return array<array-key,LeagueDto>
      */
     public function getLeague(string $queue, string $tier, string $division,int $page = 1): array
