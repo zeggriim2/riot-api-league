@@ -11,3 +11,6 @@ help: ## Affiche les aides.
 test: ## Test unitaire avec Code coverage
 	vendor\bin\phpunit --coverage-html tests\coverage
 .PHONY:test
+
+cs-fix:
+	vendor\bin\php-cs-fixer fix --allow-risky yes -vvv
