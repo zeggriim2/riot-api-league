@@ -5,6 +5,7 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use Zeggriim\RiotApiDatadragon\Enum\Platform;
 use Zeggriim\RiotApiLeague\Model\Challenges\ChallengeConfigInfoDto;
+use Zeggriim\RiotApiLeague\Model\Challenges\ChallengePointsDto;
 use Zeggriim\RiotApiLeague\Model\Challenges\PlayerInfoDto;
 use Zeggriim\RiotApiLeague\Riot\RiotApi;
 
@@ -23,7 +24,8 @@ class ChallengesApiTest extends TestCase
     public function testGetChallengesConfig()
     {
         $challengeConfig = $this->riotApi->getChallenges()->getChallengesConfig();
-        $this->assertInstanceOf(ChallengeConfigInfoDto::class, $challengeConfig);
+        $this->assertIsArray($challengeConfig);
+        $this->assertContainsOnlyInstancesOf(ChallengeConfigInfoDto::class, $challengeConfig);
     }
 
     public function testGetChallengesPercentiles()
@@ -40,6 +42,7 @@ class ChallengesApiTest extends TestCase
     {
         $challengeConfig = $this->riotApi->getChallenges()->getChallengesByChallengeId($challengeId);
         $this->assertInstanceOf(ChallengeConfigInfoDto::class, $challengeConfig);
+        $this->assertChallengeConfigInfoDto($challengeConfig);
     }
 
     public function providerChallengesByChallengeId(): array
@@ -73,6 +76,46 @@ class ChallengesApiTest extends TestCase
             "NFLqmQ-TfqzILQI1aYhPTIBn6FG1Ox3QYT2sCGDRQNlEQC8MVIzkOjw2VAncGE70VF-L4ptfaUxEUw"
         );
         $this->assertInstanceOf(PlayerInfoDto::class,$challengerPlayerData);
+        $this->assertPlayerInfoDto($challengerPlayerData);
     }
 
+    private function assertChallengeConfigInfoDto(ChallengeConfigInfoDto $challengeConfigInfoDto)
+    {
+        $this->assertIsInt($challengeConfigInfoDto->getId());
+        $this->assertIsArray($challengeConfigInfoDto->getLocalizedNames());
+        $this->assertIsString($challengeConfigInfoDto->getState());
+        $this->assertNullOrIsInt($challengeConfigInfoDto->getStartTimestamp());
+        $this->assertNullOrIsInt($challengeConfigInfoDto->getEndTimestamp());
+        $this->assertIsBool($challengeConfigInfoDto->isLeaderboard());
+        $this->assertIsArray($challengeConfigInfoDto->getThresholds());
+    }
+
+    private function assertPlayerInfoDto(PlayerInfoDto $playerInfoDto)
+    {
+        $this->assertIsArray($playerInfoDto->getChallenges());
+        $this->assertIsArray($playerInfoDto->getPreferences());
+        $this->assertIsArray($playerInfoDto->getCategoryPoints());
+        $this->assertChallengePointsDto($playerInfoDto->getTotalPoints());
+    }
+
+    private function assertChallengePointsDto(ChallengePointsDto $challengePointsDto)
+    {
+        $this->assertIsString($challengePointsDto->getLevel());
+        $this->assertIsInt($challengePointsDto->getCurrent());
+        $this->assertIsInt($challengePointsDto->getMax());
+        if(is_int($challengePointsDto->getPercentile())){
+            $this->assertIsInt($challengePointsDto->getPercentile());
+        }else{
+            $this->assertIsFloat($challengePointsDto->getPercentile());
+        }
+    }
+
+    private function assertNullOrIsInt(?int $actual)
+    {
+        if(is_int($actual)){
+            $this->assertIsInt($actual);
+        }else{
+            $this->assertNull($actual);
+        }
+    }
 }

@@ -10,8 +10,8 @@ class ChallengeConfigInfoDto
     private array $localizedNames;
     private string $state;
 // TODO    private int $tracking;
-    private int $startTimestamp;
-    private int $endTimestamp;
+    private ?int $startTimestamp = null;
+    private ?int $endTimestamp = null;
     private bool $leaderboard;
     private array $thresholds;
 
@@ -51,22 +51,22 @@ class ChallengeConfigInfoDto
         $this->state = $state;
     }
 
-    public function getStartTimestamp(): int
+    public function getStartTimestamp(): ?int
     {
         return $this->startTimestamp;
     }
 
-    public function setStartTimestamp(int $startTimestamp): void
+    public function setStartTimestamp(?int $startTimestamp): void
     {
         $this->startTimestamp = $startTimestamp;
     }
 
-    public function getEndTimestamp(): int
+    public function getEndTimestamp(): ?int
     {
         return $this->endTimestamp;
     }
 
-    public function setEndTimestamp(int $endTimestamp): void
+    public function setEndTimestamp(?int $endTimestamp): void
     {
         $this->endTimestamp = $endTimestamp;
     }

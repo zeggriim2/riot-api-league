@@ -23,14 +23,17 @@ class ChallengesApi extends BaseApi
         parent::__construct();
     }
 
-    public function getChallengesConfig(): ChallengeConfigInfoDto
+    /**
+     * @return array<array-key,ChallengeConfigInfoDto>
+     */
+    public function getChallengesConfig(): array
     {
         $url = BuildUrl::build(UrlChallenges::URL_CHALLENGES_CONFIG,[
                 'platform'      => $this->platform,
             ]
         );
 
-        return $this->call($url, ChallengeConfigInfoDto::class);
+        return $this->call($url, ChallengeConfigInfoDto::class, isArray: true);
     }
 
     public function getChallengesPercentiles()
