@@ -30,14 +30,14 @@ class MatchApi extends BaseApi
      * @param string $puuid
      * @return array<array-key,string>
      */
-    public function getMatchBySummonerPuuid(string $puuid): array
+    public function getMatchBySummonerPuuid(string $puuid,int $start = 0,int $count = 20): array
     {
         $url = BuildUrl::build(UrlMatch::URL_MATCH_SUMMONER_PUUID,[
                 "region"        => Region::PLATFORM_TO_REGION[$this->platform],
                 "puuid"         => $puuid
             ]
         );
-        return $this->call($url);
+        return $this->call($url, query: ["start" => $start, "count" => $count]);
     }
 
     public function getMatchById(string $id): MatchDto
@@ -48,7 +48,7 @@ class MatchApi extends BaseApi
             ]
         );
 
-        return $this->call($url, MatchDto::class);
+        return $this->call($url, type: MatchDto::class);
     }
 
     public function getMatchTimeLineById(string $id): MatchTimeLineDto
@@ -59,6 +59,6 @@ class MatchApi extends BaseApi
             ]
         );
 
-        return $this->call($url, MatchTimeLineDto::class);
+        return $this->call($url, type: MatchTimeLineDto::class);
     }
 }
