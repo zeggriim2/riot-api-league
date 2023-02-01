@@ -30,7 +30,7 @@ class SummonerApi extends BaseApi
             ]
         );
 
-        return $this->call($url, SummonerDto::class);
+        return $this->call($url, type: SummonerDto::class);
     }
 
     public function getSummonerByAccount(string $accountId)
@@ -41,7 +41,7 @@ class SummonerApi extends BaseApi
             ]
         );
 
-        return $this->call($url, SummonerDto::class);
+        return $this->call($url, type: SummonerDto::class);
     }
 
     public function getSummonerByPuuid(string $puuid)
@@ -52,7 +52,7 @@ class SummonerApi extends BaseApi
             ]
         );
 
-        return $this->call($url, SummonerDto::class);
+        return $this->call($url, type: SummonerDto::class);
     }
 
     public function getSummonerBySummonerId(string $summonerId)
@@ -63,7 +63,7 @@ class SummonerApi extends BaseApi
             ]
         );
 
-        return $this->call($url, SummonerDto::class);
+        return $this->call($url, type: SummonerDto::class);
     }
 
 

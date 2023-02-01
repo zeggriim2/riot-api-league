@@ -37,7 +37,7 @@ class ChampionMastery extends BaseApi
             ]
         );
 
-        return $this->call($url,ChampionMasteryDto::class, isArray: true);
+        return $this->call($url,type: ChampionMasteryDto::class, isArray: true);
     }
 
     /**
@@ -47,7 +47,10 @@ class ChampionMastery extends BaseApi
      * @param int|string $championId
      * @return ChampionMasteryDto
      */
-    public function getChampionMasterieBySummonerIdAndChampionId(string $summonerId, int|string $championId): ChampionMasteryDto
+    public function getChampionMasterieBySummonerIdAndChampionId(
+        string $summonerId,
+        int|string $championId
+    ): ChampionMasteryDto
     {
         $url = BuildUrl::build(UrlChampionMastery::URL_CHAMPION_MASTERY_SUMMONER_ID_AND_CHAMPION_ID,[
                 'platform'      => $this->platform,
@@ -56,7 +59,7 @@ class ChampionMastery extends BaseApi
             ]
         );
 
-        return $this->call($url,ChampionMasteryDto::class);
+        return $this->call($url,type: ChampionMasteryDto::class);
     }
 
     /**
@@ -65,7 +68,7 @@ class ChampionMastery extends BaseApi
      * @param string $summonerId
      * @return array<array-key,ChampionMasteryDto>
      */
-    public function getChampionMasterieTopBySummunerId(string $summonerId): array
+    public function getChampionMasterieTopBySummunerId(string $summonerId,int $count = 3): array
     {
         $url = BuildUrl::build(UrlChampionMastery::URL_CHAMPION_MASTERY_TOP_SUMMONER_ID,[
                 'platform'      => $this->platform,
@@ -73,7 +76,7 @@ class ChampionMastery extends BaseApi
             ]
         );
 
-        return $this->call($url,ChampionMasteryDto::class, isArray: true);
+        return $this->call($url, query: ["count" => $count], type: ChampionMasteryDto::class, isArray: true);
     }
 
     public function getChampionMasteryAllScoreBySummonerId(string $summonerId): int

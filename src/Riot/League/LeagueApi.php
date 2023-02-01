@@ -29,7 +29,7 @@ class LeagueApi extends BaseApi
      * @param string $division
      * @return array<array-key,LeagueDto>
      */
-    public function getLeague(string $queue, string $tier, string $division): array
+    public function getLeague(string $queue, string $tier, string $division,int $page = 1): array
     {
         $url = BuildUrl::build(UrlLeague::URL_LEAGUE_GENERAL,[
                 'platform'  => $this->platform,
@@ -39,7 +39,7 @@ class LeagueApi extends BaseApi
             ]
         );
 
-        return $this->call($url, LeagueDto::class, isArray: true);
+        return $this->call($url, query: ['page' => $page], type: LeagueDto::class, isArray: true);
     }
 
     /**
@@ -54,7 +54,7 @@ class LeagueApi extends BaseApi
             ]
         );
 
-        return $this->call($url, LeagueDto::class, isArray: true);
+        return $this->call($url, type: LeagueDto::class, isArray: true);
     }
 
     public function getLeagueByLeagueId(string $leagueId): LeagueListDto
@@ -65,7 +65,7 @@ class LeagueApi extends BaseApi
             ]
         );
 
-        return $this->call($url,LeagueListDto::class);
+        return $this->call($url,type: LeagueListDto::class);
     }
 
     public function getLeagueChallenger(string $queue): LeagueListDto
@@ -75,7 +75,7 @@ class LeagueApi extends BaseApi
                 'queue'    => $queue
             ]
         );
-        return $this->call($url,LeagueListDto::class);
+        return $this->call($url,type: LeagueListDto::class);
     }
 
     public function getGrandMaster(string $queue): LeagueListDto
@@ -85,7 +85,7 @@ class LeagueApi extends BaseApi
                 'queue'    => $queue
             ]
         );
-        return $this->call($url,LeagueListDto::class);
+        return $this->call($url,type: LeagueListDto::class);
     }
 
     public function getMaster(string $queue): LeagueListDto
@@ -95,6 +95,6 @@ class LeagueApi extends BaseApi
                 'queue'    => $queue
             ]
         );
-        return $this->call($url,LeagueListDto::class);
+        return $this->call($url,type: LeagueListDto::class);
     }
 }

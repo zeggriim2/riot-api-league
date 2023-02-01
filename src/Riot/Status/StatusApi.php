@@ -29,6 +29,6 @@ class StatusApi extends BaseApi
             ]
         );
 
-        return $this->call($url,PlatformDataDto::class);
+        return $this->call($url,type: PlatformDataDto::class);
     }
 }

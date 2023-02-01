@@ -33,7 +33,7 @@ class ChallengesApi extends BaseApi
             ]
         );
 
-        return $this->call($url, ChallengeConfigInfoDto::class, isArray: true);
+        return $this->call($url, type: ChallengeConfigInfoDto::class, isArray: true);
     }
 
     public function getChallengesPercentiles()
@@ -54,7 +54,7 @@ class ChallengesApi extends BaseApi
             ]
         );
 
-        return $this->call($url, ChallengeConfigInfoDto::class);
+        return $this->call($url, type: ChallengeConfigInfoDto::class);
     }
 
     public function getChallengesPercentileByChallengeId(int|string $challengeId)
@@ -76,6 +76,6 @@ class ChallengesApi extends BaseApi
             ]
         );
 
-        return $this->call($url, PlayerInfoDto::class);
+        return $this->call($url, type: PlayerInfoDto::class);
     }
 }
