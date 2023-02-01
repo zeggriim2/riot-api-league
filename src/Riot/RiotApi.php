@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Zeggriim\RiotApiLeague\Riot;
 
 use Zeggriim\RiotApiLeague\Riot\Challenges\ChallengesApi;
+use Zeggriim\RiotApiLeague\Riot\Champion\ChampionApi;
 use Zeggriim\RiotApiLeague\Riot\ChampionMastery\ChampionMastery;
 use Zeggriim\RiotApiLeague\Riot\League\LeagueApi;
 use Zeggriim\RiotApiLeague\Riot\Match\MatchApi;
@@ -64,6 +65,14 @@ class RiotApi
     public function getMatch(): MatchApi
     {
         return new MatchApi(
+            $this->platform,
+            $this->apiKey
+        );
+    }
+
+    public function getChampion(): ChampionApi
+    {
+        return new ChampionApi(
             $this->platform,
             $this->apiKey
         );
