@@ -7,6 +7,7 @@ namespace Zeggriim\RiotApiLeague\Riot;
 use Zeggriim\RiotApiLeague\Riot\Challenges\ChallengesApi;
 use Zeggriim\RiotApiLeague\Riot\ChampionMastery\ChampionMastery;
 use Zeggriim\RiotApiLeague\Riot\League\LeagueApi;
+use Zeggriim\RiotApiLeague\Riot\Match\MatchApi;
 use Zeggriim\RiotApiLeague\Riot\Status\StatusApi;
 use Zeggriim\RiotApiLeague\Riot\Summoner\SummonerApi;
 
@@ -55,6 +56,14 @@ class RiotApi
     public function getChallenges(): ChallengesApi
     {
         return new ChallengesApi(
+            $this->platform,
+            $this->apiKey
+        );
+    }
+
+    public function getMatch(): MatchApi
+    {
+        return new MatchApi(
             $this->platform,
             $this->apiKey
         );
