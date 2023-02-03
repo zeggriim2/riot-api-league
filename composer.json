@@ -1,6 +1,9 @@
 {
     "name": "zeggriim/riot-api-league",
-    "description": "iot League of Legends API wrapper PHP8",
+    "type": "library",
+    "description": "Riot League of Legends API wrapper PHP8",
+    "keywords": ["riot", "league of legends", "data dragon", "api", "wrapper", "php7", "php8", "metapackage", "league of legends"],
+    "homepage": "https://github.com/zeggriim2/riot-api-league",
     "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
