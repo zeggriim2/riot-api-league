@@ -1,0 +1,29 @@
+{
+    "name": "zeggriim/riot-api-league",
+    "type": "library",
+    "description": "Riot League of Legends API wrapper PHP8",
+    "keywords": ["riot", "league of legends", "data dragon", "api", "wrapper", "php7", "php8", "metapackage", "league of legends"],
+    "homepage": "https://github.com/zeggriim2/riot-api-league",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Zeggriim\\RiotApiLeague\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zeggriim2",
+            "email": "lilian.dorazio@hotmail.fr"
+        }
+    ],
+    "require": {
+        "zeggriim/riot-api-datadragon": "1.0.*",
+        "vlucas/phpdotenv": "^5.5",
+        "symfony/property-info": "^6.2",
+        "phpdocumentor/reflection-docblock": "^5.3"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2",
+        "phpunit/phpunit": "^9.5"
+    }
+}
